@@ -6,6 +6,8 @@ import React, {useCallback, useState} from 'react';
 import Input from "@/app/components/Input";
 import {useForm} from "react-hook-form";
 import Buttons from "@/app/components/Buttons";
+import AuthSocialButton from "@/app/components/AuthSocialButton";
+import {Link} from "@mui/material";
 
 
 function AuthForm(label) {
@@ -88,18 +90,28 @@ function AuthForm(label) {
                             <div className={"w-full border-t border-gray-300"}/>
 
 
-                            <div className={"flex flex-row px-4 text-gray-500 "}>Continue
+                            <div className={"flex flex-row px-4 text-sm text-gray-500 "}>Continue
                             </div>
-                              <div className={"w-full border-t border-gray-300 "}/>
+                            <div className={"w-full border-t border-gray-300 "}/>
 
                         </div>
 
 
-
                     </div>
                     <div className={"mt-6 flex gap-2"}>
-                          <Buttons label={"Google"} fullwidth/>
+                        <AuthSocialButton onClick={() => socialAction('google')}/>
                     </div>
+                    <div className={" mt-6 w-full border-t border-gray-300"}/>
+                    <div className={" mt-6 flex flex-row items-center justify-center"}>
+                        <div className={" flex flex-row px-2 text-sm text-gray-500 justify-center "}>
+                            {variant === "LOGIN" ? "New to Connectify ?" : "Already Registred ?"}
+                        </div>
+                        <Link onClick={toogleVariant} className={"cursor-pointer underline  flex flex-row text-sm text-gray-500 justify-center "}>
+                            {variant === "LOGIN" ? "Register " : "Login "}
+                        </Link>
+
+                    </div>
+
 
                 </div>
 

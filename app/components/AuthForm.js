@@ -61,7 +61,8 @@ function AuthForm(label) {
                 >
                     {
                         variant === 'REGISTER' && (
-                            <Input id={"username"} labelName={"Username"} type={"text"} register={register} errors={errors}/>
+                            <Input id={"username"} labelName={"Username"} type={"text"} register={register}
+                                   errors={errors}/>
                         )
                     }
 
@@ -72,16 +73,36 @@ function AuthForm(label) {
                     <div>
                         {
                             variant === 'LOGIN'
-                                ?  <Buttons fullwidth  label={"Sign-In"}  /> :
-                                <Buttons fullwidth  label={"Sign-Up"}  />
+                                ? <Buttons fullwidth label={"Sign-In"}/> :
+                                <Buttons fullwidth label={"Sign-Up"}/>
 
                         }
 
 
                     </div>
 
-
                 </form>
+                <div className={"mt-6 "}>
+                    <div className={"relative "}>
+                        <div className={" inset-0 flex items-center"}>
+                            <div className={"w-full border-t border-gray-300"}/>
+
+
+                            <div className={"flex flex-row px-4 text-gray-500 "}>Continue
+                            </div>
+                              <div className={"w-full border-t border-gray-300 "}/>
+
+                        </div>
+
+
+
+                    </div>
+                    <div className={"mt-6 flex gap-2"}>
+                          <Buttons label={"Google"} fullwidth/>
+                    </div>
+
+                </div>
+
 
             </div>
         </div>

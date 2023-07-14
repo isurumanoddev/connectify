@@ -10,7 +10,7 @@ import AuthSocialButton from "@/app/components/AuthSocialButton";
 import {Link} from "@mui/material";
 
 
-function AuthForm(label) {
+function AuthForm() {
     // const [variant, setVariant] = useState('LOGIN');
     const [variant, setVariant] = useState('REGISTER');
     const [isLoading, setIsLoading] = useState(false);
@@ -68,15 +68,15 @@ function AuthForm(label) {
                         )
                     }
 
-                    <Input id={"email"} labelName={"Email"} type={"email"} register={register} errors={errors}/>
-                    <Input id={"password"} labelName={"Password"} type={"password"} register={register}
+                    <Input disabled={isLoading} id={"email"} labelName={"Email"} type={"email"} register={register} errors={errors}/>
+                    <Input disabled={isLoading} id={"password"} labelName={"Password"} type={"password"} register={register}
                            errors={errors}/>
 
                     <div>
                         {
                             variant === 'LOGIN'
-                                ? <Buttons fullwidth label={"Sign-In"}/> :
-                                <Buttons fullwidth label={"Sign-Up"}/>
+                                ? <Buttons  fullwidth label={"Sign-In"}/> :
+                                <Buttons   fullwidth label={"Sign-Up"}/>
 
                         }
 

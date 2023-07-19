@@ -39,9 +39,13 @@ export const authOptions = {
                 const isCorrectPassword = await bcrypt.compare(
                     credentials?.password,
                     user?.hashedPassword
-
-
                 )
+
+                if (!isCorrectPassword) {
+                    throw new Error("Invalid Credentials");
+                }
+                return user
+
 
             },
 
@@ -49,5 +53,15 @@ export const authOptions = {
         })
 
 
-    ]
+    ],
+    debug: process.env.NODE_ENV === 'development',
+    session: {
+        strategy: 'jwt'
+    },
+    secret: process.env.NEXTAUTH_SECRET,
+
 }
+
+export default NextAuth(authOptions);
+
+

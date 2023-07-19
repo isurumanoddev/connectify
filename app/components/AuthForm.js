@@ -8,6 +8,8 @@ import {useForm} from "react-hook-form";
 import Buttons from "@/app/components/Buttons";
 import AuthSocialButton from "@/app/components/AuthSocialButton";
 import {Link} from "@mui/material";
+import axios from "axios";
+import {error} from "next/dist/build/output/log";
 
 
 function AuthForm() {
@@ -32,7 +34,9 @@ function AuthForm() {
         setIsLoading(true)
 
         if (variant === 'REGISTER') {
-            // axios register
+            axios.post('api/register', data)
+                .then(res => console.log("RESULT ",res))
+                .catch(error => console.log(error))
         }
         if (variant === 'LOGIN') {
             // nextAuth signIn
@@ -68,15 +72,17 @@ function AuthForm() {
                         )
                     }
 
-                    <Input disabled={isLoading} id={"email"} labelName={"Email"} type={"email"} register={register} errors={errors}/>
-                    <Input disabled={isLoading} id={"password"} labelName={"Password"} type={"password"} register={register}
+                    <Input disabled={isLoading} id={"email"} labelName={"Email"} type={"email"} register={register}
+                           errors={errors}/>
+                    <Input disabled={isLoading} id={"password"} labelName={"Password"} type={"password"}
+                           register={register}
                            errors={errors}/>
 
                     <div>
                         {
                             variant === 'LOGIN'
-                                ? <Buttons  fullwidth label={"Sign-In"}/> :
-                                <Buttons   fullwidth label={"Sign-Up"}/>
+                                ? <Buttons fullwidth label={"Sign-In"}/> :
+                                <Buttons fullwidth label={"Sign-Up"}/>
 
                         }
 
@@ -106,7 +112,8 @@ function AuthForm() {
                         <div className={" flex flex-row px-2 text-sm text-gray-500 justify-center "}>
                             {variant === "LOGIN" ? "New to Connectify ?" : "Already Registred ?"}
                         </div>
-                        <Link onClick={toogleVariant} className={"cursor-pointer underline  flex flex-row text-sm text-gray-500 justify-center "}>
+                        <Link onClick={toogleVariant}
+                              className={"cursor-pointer underline  flex flex-row text-sm text-gray-500 justify-center "}>
                             {variant === "LOGIN" ? "Register " : "Login "}
                         </Link>
 

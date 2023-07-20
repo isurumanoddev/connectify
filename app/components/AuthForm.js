@@ -34,9 +34,10 @@ function AuthForm() {
         setIsLoading(true)
 
         if (variant === 'REGISTER') {
-            axios.post('api/register', data)
-                .then(res => console.log("RESULT ",res))
-                .catch(error => console.log(error))
+            console.log("Click Register",data)
+            // axios.post('api/register', data)
+            //     .then(res => console.log("RESULT ",res))
+            //     .catch(error => console.log("error",error))
         }
         if (variant === 'LOGIN') {
             // nextAuth signIn
@@ -56,13 +57,11 @@ function AuthForm() {
         setIsLoading(true)
         // NextAuth
     }
-
-
     return (
         <div className={"mt-8 mx-auto w-full max-w-lg "}>
             <div className={"px-6 md:px-12 py-8 shadow-md rounded-lg bg-white "}>
                 <form className={"flex flex-col space-y-4  "}
-                      onSubmit={handleSubmit(onSumbit)}
+                     onSubmit={handleSubmit(onSumbit)}
 
                 >
                     {
@@ -71,13 +70,11 @@ function AuthForm() {
                                    errors={errors}/>
                         )
                     }
-
                     <Input disabled={isLoading} id={"email"} labelName={"Email"} type={"email"} register={register}
                            errors={errors}/>
                     <Input disabled={isLoading} id={"password"} labelName={"Password"} type={"password"}
                            register={register}
                            errors={errors}/>
-
                     <div>
                         {
                             variant === 'LOGIN'
@@ -85,7 +82,6 @@ function AuthForm() {
                                 <Buttons fullwidth label={"Sign-Up"}/>
 
                         }
-
 
                     </div>
 

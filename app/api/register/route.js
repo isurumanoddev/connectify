@@ -7,6 +7,7 @@ export async function POST(request) {
     try {
         const body = await request.json()
         const {email, name, password} = body;
+        console.log("REGISTRATION")
 
         if (!email || !name || !password) {
             return new NextResponse("Missing Info ", {status: 400})

@@ -1,6 +1,6 @@
 'use client'
 
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 
 
 import Input from "@/app/components/Input";
@@ -11,14 +11,26 @@ import {Link} from "@mui/material";
 import axios from "axios";
 
 import toast from "react-hot-toast";
-import {signIn} from "next-auth/react";
+import {signIn, useSession} from "next-auth/react";
+import {useRouter} from "next/navigation";
 
 
 function AuthForm() {
+
+    const router = useRouter()
+    const session = useSession()
     const [variant, setVariant] = useState('LOGIN');
     // const [variant, setVariant] = useState('REGISTER');
     const [isLoading, setIsLoading] = useState(false);
 
+
+    useEffect(() => {
+        if (session?.status){
+            console.log("Authenticated")
+            router.push("/users")
+
+        }
+    }, [session?.status,router]);
 
     const toogleVariant = useCallback(
         () => {

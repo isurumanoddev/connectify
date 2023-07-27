@@ -1,6 +1,6 @@
 import './globals.css'
 import { Sora } from 'next/font/google'
-import ToasterProvider from "@/app/providers/ToasterProvider";
+import ToasterProvider from "@/app/context/ToasterProvider";
 
 const inter = Sora({ subsets: ['latin'] })
 

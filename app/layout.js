@@ -1,5 +1,6 @@
 import './globals.css'
 import { Sora } from 'next/font/google'
+import ToasterProvider from "@/app/providers/ToasterProvider";
 
 const inter = Sora({ subsets: ['latin'] })
 
@@ -11,7 +12,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+      <ToasterProvider/>
+      {children}</body>
     </html>
   )
 }

@@ -6,6 +6,7 @@ function Buttons({label, color, fullwidth,disabled,secondary,danger}) {
     return (
         // <Button type={'submit'} className={`bg-sky-500 font-semibold leading-6 text-white hover:bg-sky-400 w-full mt-2`}>{label}</Button>
         <Button
+            type={'submit'}
             className={`
             ${fullwidth && "w-full"} 
             ${disabled && "opacity-50 cursor-default"} 

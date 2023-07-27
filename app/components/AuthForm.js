@@ -9,12 +9,14 @@ import Buttons from "@/app/components/Buttons";
 import AuthSocialButton from "@/app/components/AuthSocialButton";
 import {Link} from "@mui/material";
 import axios from "axios";
-import {error} from "next/dist/build/output/log";
+
+import toast from "react-hot-toast";
+import {signIn} from "next-auth/react";
 
 
 function AuthForm() {
-    // const [variant, setVariant] = useState('LOGIN');
-    const [variant, setVariant] = useState('REGISTER');
+    const [variant, setVariant] = useState('LOGIN');
+    // const [variant, setVariant] = useState('REGISTER');
     const [isLoading, setIsLoading] = useState(false);
 
 
@@ -34,20 +36,42 @@ function AuthForm() {
         setIsLoading(true)
 
         if (variant === 'REGISTER') {
-            console.log("Click Register",data)
-            // axios.post('api/register', data)
-            //     .then(res => console.log("RESULT ",res))
-            //     .catch(error => console.log("error",error))
+            console.log("Click Register", data)
+            axios.post('api/register', data)
+                .then(() => {
+
+                    setIsLoading(false)
+
+                })
+                .catch(error => {
+                    console.log("error ", error)
+                    toast.error("Something went wrong")
+
+                })
         }
         if (variant === 'LOGIN') {
-            // nextAuth signIn
+            console.log("Login")
+            signIn('credentials', {
+                ...data,
+                redirect: false,
+
+            })
+                .then(response => {
+                    if (response?.error) {
+                        toast.error("Invalid Credentials")
+                    }
+                    if (response?.ok) {
+                        toast.success("Login Success")
+                    }
+                })
+            // toast.error("Invalid Credentials")
         }
     }
     const {
         handleSubmit, register, formState: {errors}
     } = useForm({
         defaultValues: {
-            username: '',
+            name: '',
             email: '',
             password: ''
         }
@@ -55,13 +79,22 @@ function AuthForm() {
 
     const socialAction = (action) => {
         setIsLoading(true)
-        // NextAuth
+
+        signIn(action,{redirect:false})
+            .then(callback => {
+                   if (callback?.error) {
+                        toast.error("Invalid Credentials")
+                    }
+                    if (callback?.ok) {
+                        toast.success("Login Success")
+                    }
+            })
     }
     return (
         <div className={"mt-8 mx-auto w-full max-w-lg "}>
             <div className={"px-6 md:px-12 py-8 shadow-md rounded-lg bg-white "}>
                 <form className={"flex flex-col space-y-4  "}
-                     onSubmit={handleSubmit(onSumbit)}
+                      onSubmit={handleSubmit(onSumbit)}
 
                 >
                     {

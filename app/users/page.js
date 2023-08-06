@@ -1,14 +1,16 @@
+'use client'
 import React from 'react';
 
 import {Button} from "@mui/material";
-import {signout} from "next-auth/core/routes";
+
 import {useRouter} from "next/navigation";
+import {signOut} from "next-auth/react";
 
 function Page() {
 
     const router = useRouter()
     const userlogOut =async () => {
-       await signout()
+       await signOut()
         router.push("/")
 
     }

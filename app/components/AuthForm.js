@@ -24,13 +24,13 @@ function AuthForm() {
     const [isLoading, setIsLoading] = useState(false);
 
 
-    useEffect(() => {
-        if (session?.status){
-            console.log("Authenticated")
-            router.push("/users")
-
-        }
-    }, [session?.status,router]);
+    // useEffect(() => {
+    //     if (session?.status){
+    //         console.log("Authenticated")
+    //         router.push("/")
+    //
+    //     }
+    // }, [session?.status,router]);
 
     const toogleVariant = useCallback(
         () => {
@@ -111,7 +111,7 @@ function AuthForm() {
                 >
                     {
                         variant === 'REGISTER' && (
-                            <Input id={"username"} labelName={"Username"} type={"text"} register={register}
+                            <Input id={"name"} labelName={"Username"} type={"text"} register={register}
                                    errors={errors}/>
                         )
                     }

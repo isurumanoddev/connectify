@@ -24,13 +24,13 @@ function AuthForm() {
     const [isLoading, setIsLoading] = useState(false);
 
 
-    // useEffect(() => {
-    //     if (session?.status){
-    //         console.log("Authenticated")
-    //         router.push("/")
-    //
-    //     }
-    // }, [session?.status,router]);
+    useEffect(() => {
+        if (session?.status){
+            console.log("Authenticated")
+            router.push("/users")
+
+        }
+    }, [session?.status,router]);
 
     const toogleVariant = useCallback(
         () => {

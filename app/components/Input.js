@@ -1,7 +1,6 @@
 import React from 'react';
 
 
-import {FieldErrors, FieldValues, UseFormRegister} from "react-hook-form";
 
 function Input({id, labelName, type, required, register, errors, disabled}) {
     return (

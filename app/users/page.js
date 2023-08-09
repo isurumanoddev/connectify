@@ -9,9 +9,15 @@ import {signOut} from "next-auth/react";
 function Page() {
 
     const router = useRouter()
-    const userlogOut =async () => {
-       await signOut()
-        router.push("/")
+    const userlogOut = async () => {
+        try {
+            await signOut()
+            router.push("/")
+        } catch (e) {
+            console.log("error ",e)
+
+        }
+
 
     }
     return (

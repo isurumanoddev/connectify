@@ -27,7 +27,7 @@ function AuthForm() {
     useEffect(() => {
         if (session?.status){
             console.log("Authenticated")
-            router.push("/users")
+            // router.push("/users")
 
         }
     }, [session?.status,router]);
@@ -50,14 +50,11 @@ function AuthForm() {
         if (variant === 'REGISTER') {
             console.log("Click Register", data)
             axios.post('api/register', data)
-                .then(() => {
 
-                    setIsLoading(false)
-
-                })
+                .then(() => signIn('credentials',{...data,redirect:false}))
                 .catch(error => {
                     console.log("error ", error)
-                    toast.error("Something went wrong")
+                    toast.error("You have Already registered with this email.")
 
                 })
         }
@@ -74,6 +71,7 @@ function AuthForm() {
                     }
                     if (response?.ok) {
                         toast.success("Login Success")
+                        router.push("/users")
                     }
                 })
             // toast.error("Invalid Credentials")
